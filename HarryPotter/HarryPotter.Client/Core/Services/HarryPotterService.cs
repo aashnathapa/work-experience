@@ -1,7 +1,7 @@
 using System.Text.Json;
-using WorkExperience.Client.Core.Models;
+using HarryPotter.Client.Core.Models;
 
-namespace WorkExperience.Client.Core.Services
+namespace HarryPotter.Client.Core.Services
 {
     public class HarryPotterService
     {

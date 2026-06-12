@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace WorkExperience.Server.Models
+namespace HarryPotter.Server.Models
 {
     public class Wands
     {

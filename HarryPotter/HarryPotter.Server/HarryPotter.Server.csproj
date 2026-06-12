@@ -19,7 +19,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\WorkExperience.Client\WorkExperience.Client.csproj" />
+		<ProjectReference Include="..\HarryPotter.Client\HarryPotter.Client.csproj" />
 	</ItemGroup>
 
 </Project>

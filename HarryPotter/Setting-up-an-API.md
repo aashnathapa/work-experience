@@ -32,7 +32,7 @@ You are successful when you can:
 ## Before you start
 
 1. Open `WorkExperience.sln` in Visual Studio.
-2. Run the `WorkExperience.Server` project. This project hosts the app and the controller the client calls. If you are using the command line, run `dotnet run --project WorkExperience.Server\WorkExperience.Server.csproj` from the `WorkExperience` folder.
+2. Run the `HarryPotter.Server` project. This project hosts the app and the controller the client calls. If you are using the command line, run `dotnet run --project HarryPotter.Server\HarryPotter.Server.csproj` from the `WorkExperience` folder.
 3. When the browser opens, go to the home page and open **Characters** from the menu, or browse directly to `/characters`.
 4. The app is working if the **Characters** page loads, the loading indicator appears briefly, and then character cards are shown.
 5. As a second check, open `/spells` and confirm that the **Spells Challenge** page opens and explains what you need to build.
@@ -84,12 +84,12 @@ If the diagram does not render in your editor, read it from left to right:
 
 Follow this one example all the way through:
 
-1. The browser opens `/characters`, so Blazor loads `WorkExperience.Client\Pages\Characters.razor`.
+1. The browser opens `/characters`, so Blazor loads `HarryPotter.Client\Pages\Characters.razor`.
 2. Inside `OnInitializedAsync()`, the page calls `HarryPotterService.GetCharactersAsync()`.
-3. The client-side service in `WorkExperience.Client\Core\Services\HarryPotterService.cs` sends `GET harrypotter/characters` to our own app server.
-4. `WorkExperience.Server\Controllers\HarryPotterController.cs` receives that request in `GetCharacters()`.
+3. The client-side service in `HarryPotter.Client\Core\Services\HarryPotterService.cs` sends `GET harrypotter/characters` to our own app server.
+4. `HarryPotter.Server\Controllers\HarryPotterController.cs` receives that request in `GetCharacters()`.
 5. The controller asks `IHarryPotterService.GetCharactersAsync()` to do the work.
-6. `WorkExperience.Server\Services\HarryPotterService.cs` sends `GET characters` to the Harry Potter API at `https://hp-api.onrender.com/api/`.
+6. `HarryPotter.Server\Services\HarryPotterService.cs` sends `GET characters` to the Harry Potter API at `https://hp-api.onrender.com/api/`.
 7. The Harry Potter API returns JSON. The server service reads the response text and turns that JSON into a `List<Character>`.
 8. The controller sends that result back to the client as an `OK` response.
 9. The client-side service reads the response text, turns it into client-side `Character` objects, and returns them to the page.
@@ -132,13 +132,13 @@ Use the example journey above, then open these files one by one.
 
 | File | Why it matters | When would I open this? |
 | --- | --- | --- |
-| `WorkExperience.Client\Pages\Characters.razor` | This page loads and shows character data. | Open this when you want to see what the user sees or what happens when the page first loads. |
-| `WorkExperience.Client\Pages\Spells.razor` | This is now a scaffolded challenge page rather than a finished feature. | Open this when you want to see what you need to build next. |
-| `WorkExperience.Client\Core\Services\HarryPotterService.cs` | This service sends requests from the client to our app server. | Open this when you want to check which route the front-end is calling now, or where to add the spells route later. |
-| `WorkExperience.Server\Controllers\HarryPotterController.cs` | This controller receives requests from the client and returns results. | Open this when you want to see the current character route or add the spells route. |
-| `WorkExperience.Server\Interfaces\IHarryPotterService.cs` | This interface says what the server service must be able to do. | Open this when you want to check which methods the server service has now, or which one you need to add for spells. |
-| `WorkExperience.Server\Services\HarryPotterService.cs` | This service calls the Harry Potter API and turns JSON into C# objects. | Open this when you want to change the Harry Potter API endpoint or copy the pattern for spells. |
-| `WorkExperience.Server\Program.cs` | This file registers services and sets the Harry Potter API base address. | Open this when you want to see how the server starts up or where the API base URL is configured. |
+| `HarryPotter.Client\Pages\Characters.razor` | This page loads and shows character data. | Open this when you want to see what the user sees or what happens when the page first loads. |
+| `HarryPotter.Client\Pages\Spells.razor` | This is now a scaffolded challenge page rather than a finished feature. | Open this when you want to see what you need to build next. |
+| `HarryPotter.Client\Core\Services\HarryPotterService.cs` | This service sends requests from the client to our app server. | Open this when you want to check which route the front-end is calling now, or where to add the spells route later. |
+| `HarryPotter.Server\Controllers\HarryPotterController.cs` | This controller receives requests from the client and returns results. | Open this when you want to see the current character route or add the spells route. |
+| `HarryPotter.Server\Interfaces\IHarryPotterService.cs` | This interface says what the server service must be able to do. | Open this when you want to check which methods the server service has now, or which one you need to add for spells. |
+| `HarryPotter.Server\Services\HarryPotterService.cs` | This service calls the Harry Potter API and turns JSON into C# objects. | Open this when you want to change the Harry Potter API endpoint or copy the pattern for spells. |
+| `HarryPotter.Server\Program.cs` | This file registers services and sets the Harry Potter API base address. | Open this when you want to see how the server starts up or where the API base URL is configured. |
 
 ## What to notice in each file
 
@@ -146,8 +146,8 @@ Use the example journey above, then open these files one by one.
 
 Open:
 
-- `WorkExperience.Client\Pages\Characters.razor`
-- `WorkExperience.Client\Pages\Spells.razor`
+- `HarryPotter.Client\Pages\Characters.razor`
+- `HarryPotter.Client\Pages\Spells.razor`
 
 Notice that:
 
@@ -162,7 +162,7 @@ Start here if you want to answer the question, **“What happens when the page f
 
 Open:
 
-- `WorkExperience.Client\Core\Services\HarryPotterService.cs`
+- `HarryPotter.Client\Core\Services\HarryPotterService.cs`
 
 This service does **not** call the Harry Potter API directly. It calls **our own app server** instead.
 
@@ -206,8 +206,8 @@ public async Task<List<Character>> GetCharactersAsync()
 
 Open:
 
-- `WorkExperience.Server\Controllers\HarryPotterController.cs`
-- `WorkExperience.Server\Interfaces\IHarryPotterService.cs`
+- `HarryPotter.Server\Controllers\HarryPotterController.cs`
+- `HarryPotter.Server\Interfaces\IHarryPotterService.cs`
 
 The controller currently receives requests such as:
 
@@ -228,7 +228,7 @@ Open these files when you want to answer the questions, **“Which URL is my cli
 
 Open:
 
-- `WorkExperience.Server\Services\HarryPotterService.cs`
+- `HarryPotter.Server\Services\HarryPotterService.cs`
 
 This is the part that actually talks to the Harry Potter API.
 
@@ -245,7 +245,7 @@ Open this file when you want to answer the question, **“Where does the app cal
 
 Open:
 
-- `WorkExperience.Server\Program.cs`
+- `HarryPotter.Server\Program.cs`
 
 This file shows how the server is set up, including the base address:
 
@@ -276,7 +276,7 @@ The key thing is understanding the flow of data through the app.
 
 ## Troubleshooting
 
-- **The app does not start:** Make sure `WorkExperience.Server` is the project you are running.
+- **The app does not start:** Make sure `HarryPotter.Server` is the project you are running.
 - **The page opens but no data appears:** Refresh the page, then check whether the loading indicator appears. If needed, browse to `https://localhost:7147/harrypotter/characters` or `http://localhost:5160/harrypotter/characters` to see whether the server route returns data.
 - **The Spells page does not show data yet:** That is expected. The Spells page is intentionally unfinished until you build the missing model and API flow.
 - **You get an error after adding `await`:** Check that the method also uses `async` and returns `Task<...>` rather than just `List<...>`.

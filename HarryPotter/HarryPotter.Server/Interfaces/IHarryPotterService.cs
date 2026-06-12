@@ -1,6 +1,6 @@
-using WorkExperience.Server.Models;
+using HarryPotter.Server.Models;
 
-namespace WorkExperience.Server.Interfaces
+namespace HarryPotter.Server.Interfaces
 {
     public interface IHarryPotterService
     {

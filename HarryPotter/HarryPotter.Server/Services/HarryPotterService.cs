@@ -1,8 +1,8 @@
 using System.Text.Json;
-using WorkExperience.Server.Models;
-using WorkExperience.Server.Interfaces;
+using HarryPotter.Server.Models;
+using HarryPotter.Server.Interfaces;
 
-namespace WorkExperience.Server.Services
+namespace HarryPotter.Server.Services
 {
     public class HarryPotterService : IHarryPotterService
     {

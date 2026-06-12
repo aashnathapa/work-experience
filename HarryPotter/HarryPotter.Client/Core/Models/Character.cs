@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace WorkExperience.Client.Core.Models
+namespace HarryPotter.Client.Core.Models
 {
     public class Character
     {

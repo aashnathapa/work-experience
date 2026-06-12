@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
-using WorkExperience.Server.Interfaces;
+using HarryPotter.Server.Interfaces;
 
-namespace WorkExperience.Server.Controllers
+namespace HarryPotter.Server.Controllers
 {
     [ApiController]
     [Route("harrypotter/")]

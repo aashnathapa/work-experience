@@ -1,5 +1,5 @@
-using WorkExperience.Server.Interfaces;
-using WorkExperience.Server.Services;
+using HarryPotter.Server.Interfaces;
+using HarryPotter.Server.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 

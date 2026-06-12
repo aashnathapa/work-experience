@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
-using WorkExperience.Client;
+using HarryPotter.Client;
 using Blazorise;
 using Blazorise.Bootstrap5;
 using Blazorise.FluentValidation;
@@ -11,7 +11,7 @@ builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
-builder.Services.AddScoped<WorkExperience.Client.Core.Services.HarryPotterService>();
+builder.Services.AddScoped<HarryPotter.Client.Core.Services.HarryPotterService>();
 
 builder.Services.AddBlazorise(options =>
             {
