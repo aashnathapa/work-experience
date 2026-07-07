@@ -1,4 +1,8 @@
 @page "/spells"
+@using Blazorise.LoadingIndicator
+@using HarryPotter.Client.Core.Models
+@using HarryPotter.Client.Core.Services
+@inject HarryPotterService HarryPotterService
 
 <h1><b>Spells Challenge</b></h1>
 
@@ -33,7 +37,7 @@
     The search box and table shape are already here so you have a baseline to build on.
 </p>
 
-<div class="search-field">
+<div class="search-field"> # this is the search bar
     <Field Horizontal>
         <FieldLabel ColumnSize="ColumnSize.Is1">Name:</FieldLabel>
         <FieldBody ColumnSize="ColumnSize.Is4">
@@ -51,7 +55,7 @@
     </thead>
     <tbody>
         <tr>
-            <td colspan="2">Your spell data will appear here once you finish the feature.</td>
+            <td colspan="1">Hello.</td>
         </tr>
     </tbody>
 </table>
@@ -74,4 +78,19 @@
             margin-top: 10px;
         }
     </style>
+}
+
+@code {
+private string SpellSearchText = string.Empty;
+
+    private bool IsLoading;
+
+    private List<Spells> SpellsList { get; set; } = [];
+
+    protected override async Task OnInitializedAsync()
+    {
+        IsLoading = true;
+        SpellsList = await HarryPotterService.GetSpellsAsync();
+        IsLoading = false;
+    }
 }

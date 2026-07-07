@@ -25,3 +25,27 @@ namespace HarryPotter.Server.Services
         }
     }
 }
+
+namespace HarryPotter.Server.Services
+{
+    public class HarryPotterService : IHarryPotterService
+    {
+        private readonly HttpClient _httpClient;
+
+        public HarryPotterService(HttpClient client)
+        {
+            _httpClient = client;
+        }
+
+        public async Task<List<Spells>> GetSpellsAsync()
+        {
+            HttpResponseMessage response = await _httpClient.GetAsync("spells");
+            response.EnsureSuccessStatusCode();
+
+            string json = await response.Content.ReadAsStringAsync();
+            List<Spells>? spells = JsonSerializer.Deserialize<List<Spells>>(json);
+
+            return spells ?? new List<Spells>();
+        }
+    }
+}
