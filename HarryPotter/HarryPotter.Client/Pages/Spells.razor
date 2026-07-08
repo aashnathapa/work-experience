@@ -54,10 +54,23 @@
         </tr>
     </thead>
     <tbody>
+    @if (SpellsList != null && SpellsList.Count > 0)
+    {
+        @foreach (var spell in SpellsList)
+        {
+            <tr>
+                <td>@spell.Name</td>
+                <td>@spell.Description</td>
+            </tr>
+        }
+    }
+    else
+    {
         <tr>
-            <td colspan="1">Hello.</td>
+            <td colspan="2">No spells found.</td>
         </tr>
-    </tbody>
+    }
+</tbody>
 </table>
 
 <h4><b>Success check</b></h4>
