@@ -3,6 +3,7 @@
 @using HarryPotter.Client.Core.Models
 @using HarryPotter.Client.Core.Services
 @inject HarryPotterService HarryPotterService
+<LoadingIndicator @bind-Visible="@IsLoading"></LoadingIndicator>
 
 <h1><b>Spells Challenge</b></h1>
 
@@ -41,7 +42,7 @@
     <Field Horizontal>
         <FieldLabel ColumnSize="ColumnSize.Is1">Name:</FieldLabel>
         <FieldBody ColumnSize="ColumnSize.Is4">
-            <input class="form-control" placeholder="Wire this up once your spells are loading" />
+            <input class="form-control" placeholder="Search" @bind="SpellSearchText" @bind:event="oninput" />
         </FieldBody>
     </Field>
 </div>
@@ -56,7 +57,7 @@
     <tbody>
     @if (SpellsList != null && SpellsList.Count > 0)
     {
-        @foreach (var spell in SpellsList)
+        @foreach (var spell in FilteredSpells)
         {
             <tr>
                 <td>@spell.Name</td>
@@ -94,16 +95,31 @@
 }
 
 @code {
+
+
+private IEnumerable<Spell> FilteredSpells
+    {
+        get
+        {
+            if (string.IsNullOrWhiteSpace(SpellSearchText))
+            {
+                return SpellsList;
+            }
+            return SpellsList.Where(spell =>
+                spell.Name?.Contains(SpellSearchText, StringComparison.OrdinalIgnoreCase) ?? false);
+        }
+    }
 private string SpellSearchText = string.Empty;
 
-    private bool IsLoading;
+private bool IsLoading;
 
-    private List<Spell> SpellsList { get; set; } = [];
+private List<Spell> SpellsList { get; set; } = [];
 
-    protected override async Task OnInitializedAsync()
-    {
-        IsLoading = true;
-        SpellsList = await HarryPotterService.GetSpellsAsync();
-        IsLoading = false;
-    }
+protected override async Task OnInitializedAsync()
+{
+    IsLoading = true;
+    SpellsList = await HarryPotterService.GetSpellsAsync();
+    IsLoading = false;
+} 
+
 }
